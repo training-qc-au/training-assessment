@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After You - Training & Assessment Portal</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 🐏 โลโก้แบรนด์ด้านบนสุด - บีบไซส์ตามรูป Logo.jpg */
+        .logo-container {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 120px; /* ขนาดแกะน้อยพอดีคำค๊าา */
+            height: auto;
+        }
+
+        /* 🥞 กล่องจัดวางรูปวงกลม 2 ฝั่ง ซ้าย-ขวา */
+        .portal-grid {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* 🔘 สไตล์รูปวงกลม (Thumbnails) คลีนๆ มินิมอล */
+        .thumb-card {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%; /* เสกรูปให้เป็นวงกลมมนเป๊ะ */
+            overflow: hidden;
+            position: relative;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* เอฟเฟกต์เวลาเมาส์ชี้ ขยายตัวนุ่มนวลแบบพรีเมียม */
+        .thumb-card:hover {
+            transform: scale(1.04);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        /* รูปภาพพื้นหลังข้างในวงกลม */
+        .thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85); /* หรี่ไฟภาพลงนิดนึงเพื่อให้ตัวหนังสือสีขาวอ่านง่ายค๊าา */
+            transition: transform 0.4s ease;
+        }
+
+        .thumb-card:hover .thumb-img {
+            transform: scale(1.06);
+        }
+
+        /* ✍️ ตัวหนังสือสีขาว uppercase ตรงกลางรูปภาพตามแพทเทิร์นเดิมค๊าาา */
+        .thumb-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            width: 80%;
+        }
+
+        /* รองรับจอมือถือย่อสัดส่วนให้อัตโนมัติค๊าา */
+        @media (max-width: 768px) {
+            .portal-grid {
+                gap: 40px;
+                flex-direction: column;
+            }
+            .thumb-card {
+                width: 260px;
+                height: 260px;
+            }
+            .thumb-overlay-text {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <img src="Logo.jpg" alt="After You" class="logo-img">
+    </div>
+
+    <div class="portal-grid">
+        
+        <a href="#" target="_blank" class="thumb-card">
+            <img src="Training.jpg" alt="Training" class="thumb-img">
+            <div class="thumb-overlay-text">Training</div>
+        </a>
+
+        <a href="#" target="_blank" class="thumb-card">
+            <img src="Assessment.jpg" alt="Assessment" class="thumb-img">
+            <div class="thumb-overlay-text">Assessment</div>
+        </a>
+
+    </div>
+
+</body>
+</html>
