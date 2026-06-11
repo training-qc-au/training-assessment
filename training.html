@@ -22,7 +22,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px; /* เพิ่มระยะบนล่างนิดนึงเพราะมี 4 ช่องค๊าา */
+            padding: 40px 20px;
         }
 
         /* 🐏 โลโก้แบรนด์ด้านบนสุด */
@@ -39,16 +39,16 @@
         /* 🥞 แผงจัดวางรูปสี่เหลี่ยมจัตุรัส 2x2 Grid */
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* แบ่งเป็น 2 คอลัมน์เป๊ะๆ */
-            gap: 30px; /* ระยะห่างระหว่างรูป */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
             max-width: 900px;
             width: 100%;
         }
 
         /* 🔳 สไตล์รูปสี่เหลี่ยมจัตุรัส (Square Tiles) */
         .thumb-card {
-            aspect-ratio: 1 / 1; /* บังคับให้เป็นสี่เหลี่ยมจัตุรัสเสมอค๊าา */
-            border-radius: 12px; /* มนปลายนิดๆ ให้ดูซอฟต์พรีเมียม */
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
             text-decoration: none;
@@ -82,7 +82,7 @@
             transform: translate(-50%, -50%);
             color: #ffffff;
             font-family: 'Anuphan', sans-serif;
-            font-size: 32px; /* ขนาดใหญ่กำลังดีสำหรับ 4 ช่องค๊าา */
+            font-size: 32px;
             font-weight: 700;
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
             text-align: center;
@@ -90,10 +90,9 @@
             line-height: 1.2;
         }
 
-        /* สำหรับมือถือ ปรับให้เรียงเดี่ยวเพื่อความสะดวกในการดูค๊าา */
         @media (max-width: 600px) {
             .portal-grid {
-                grid-template-columns: 1fr; /* แถวละ 1 รูปค๊าา */
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
             .thumb-overlay-text {
@@ -110,22 +109,22 @@
 
     <div class="portal-grid">
         
-        <a href="#" class="thumb-card">
+        <a href="https://forms.gle/s2PzoD1sFbBdR2Yn7" target="_blank" class="thumb-card">
             <img src="Beverage.jpg" alt="อบรม Beverage" class="thumb-img">
             <div class="thumb-overlay-text">อบรม<br>Beverage</div>
         </a>
 
-        <a href="#" class="thumb-card">
+        <a href="https://forms.gle/pejviLagRJBqLWcL7" target="_blank" class="thumb-card">
             <img src="Dessert.jpg" alt="อบรม Dessert" class="thumb-img">
             <div class="thumb-overlay-text">อบรม<br>Dessert</div>
         </a>
 
-        <a href="#" class="thumb-card">
+        <a href="https://forms.gle/vo7T9SCXdDypaMN16" target="_blank" class="thumb-card">
             <img src="Kakigori.jpg" alt="อบรม Kakigori" class="thumb-img">
             <div class="thumb-overlay-text">อบรม<br>Kakigori</div>
         </a>
 
-        <a href="#" class="thumb-card">
+        <a href="https://forms.gle/9qoQfKPppJFEE8MX9" target="_blank" class="thumb-card">
             <img src="MOU1.jpg" alt="อบรม MOU" class="thumb-img">
             <div class="thumb-overlay-text">อบรม<br>MOU</div>
         </a>
