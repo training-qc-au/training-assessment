@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training & Assessment</title>
+    <title>After You - Training & Assessment Portal</title>
     <link rel="icon" type="image/png" href="logo.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&family=Anuphan:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
@@ -27,14 +26,14 @@
             padding: 20px;
         }
 
-        /* 🐏 โลโก้แบรนด์ด้านบนสุด - บีบไซส์ตามรูป Logo.jpg */
+        /* 🐏 โลโก้แบรนด์ด้านบนสุด ดึงจากไฟล์ Logo.jpg */
         .logo-container {
             margin-bottom: 50px;
             text-align: center;
         }
 
         .logo-img {
-            width: 120px; /* ขนาดแกะน้อยพอดีคำค๊าา */
+            width: 130px; /* ขนาดโลโก้แกะน้อยสุดลงตัว */
             height: auto;
         }
 
@@ -53,7 +52,7 @@
         .thumb-card {
             width: 320px;
             height: 320px;
-            border-radius: 50%; /* เสกรูปให้เป็นวงกลมมนเป๊ะ */
+            border-radius: 50%; /* บังคับรูปทรงกลมมนเป๊ะ */
             overflow: hidden;
             position: relative;
             text-decoration: none;
@@ -62,7 +61,7 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* เอฟเฟกต์เวลาเมาส์ชี้ ขยายตัวนุ่มนวลแบบพรีเมียม */
+        /* เอฟเฟกต์เวลาเมาส์ชี้ ขยายตัวนุ่มนวลพรีเมียม */
         .thumb-card:hover {
             transform: scale(1.04);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -73,7 +72,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.85); /* หรี่ไฟภาพลงนิดนึงเพื่อให้ตัวหนังสือสีขาวอ่านง่ายค๊าา */
+            filter: brightness(0.80); /* หรี่ไฟภาพลงอีกนิดเพื่อให้ตัวหนังสือภาษาไทยสีขาวเด่นเด้งขึ้นมาค๊าา */
             transition: transform 0.4s ease;
         }
 
@@ -81,23 +80,24 @@
             transform: scale(1.06);
         }
 
-        /* ✍️ ตัวหนังสือสีขาว uppercase ตรงกลางรูปภาพตามแพทเทิร์นเดิมค๊าาา */
+        /* ✍️ ปรับฟอนต์ภาษาไทย "อบรม" และ "สอบ" ให้ใหญ่ สวย สมส่วนค๊าา */
         .thumb-overlay-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff;
-            font-size: 24px;
+            font-family: 'Anuphan', 'Plus Jakarta Sans', sans-serif;
+            font-size: 42px; /* 🌟 ขยายขนาดจาก 24px เป็น 42px ให้ใหญ่เต็มตาตามบรีฟเป๊ะๆ ค๊าา */
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6); /* เพิ่มมิติเงาหลังตัวอักษรให้คมกริบ */
             text-align: center;
-            width: 80%;
+            width: 90%;
+            white-space: nowrap;
         }
 
-        /* รองรับจอมือถือย่อสัดส่วนให้อัตโนมัติค๊าา */
+        /* รองรับการย่อขนาดบนหน้าจอมือถือให้อัตโนมัติ */
         @media (max-width: 768px) {
             .portal-grid {
                 gap: 40px;
@@ -108,7 +108,7 @@
                 height: 260px;
             }
             .thumb-overlay-text {
-                font-size: 20px;
+                font-size: 34px; /* ขนาดบนมือถือใหญ่กำลังดีอ่านง่ายสุดๆ ค๊าา */
             }
         }
     </style>
@@ -122,12 +122,12 @@
     <div class="portal-grid">
         
         <a href="#" target="_blank" class="thumb-card">
-            <img src="Training.jpg" alt="Training" class="thumb-img">
+            <img src="Training.jpg" alt="การอบรม" class="thumb-img">
             <div class="thumb-overlay-text">อบรม</div>
         </a>
 
         <a href="#" target="_blank" class="thumb-card">
-            <img src="Assessment.jpg" alt="Assessment" class="thumb-img">
+            <img src="Assessment.jpg" alt="การสอบ" class="thumb-img">
             <div class="thumb-overlay-text">สอบ</div>
         </a>
 
