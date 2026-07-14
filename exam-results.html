@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After You - Exam Results</title>
-    <!-- 🐏 ไอคอนบนแท็บดึง Logo.jpg ค๊าา -->
+    <!-- 🐏 ไอคอนบนแท็บดึง Logo.jpg -->
     <link rel="icon" type="image/jpeg" href="Logo.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +57,7 @@
             margin-bottom: 60px;
         }
 
-        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ซ้าย-ขวา ปรับ gap ลดลงเล็กน้อยเพื่อรองรับปุ่มที่ยาวขึ้นค๊าา */
+        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ซ้าย-ขวา */
         .dropdown-container {
             display: flex;
             gap: 40px;
@@ -73,7 +73,7 @@
             display: inline-block;
         }
 
-        /* 🔘 ปุ่มกดหลัก ปรับเอา min-width ออกเพื่อให้ยืดหดตามความยาวตัวอักษรได้กริ๊บๆ ค๊าา */
+        /* 🔘 ปุ่มกดหลัก */
         .main-btn {
             background-color: #dbdbdb;
             color: #4a4a4a;
@@ -83,7 +83,7 @@
             border-radius: 12px;
             cursor: pointer;
             text-align: center;
-            white-space: nowrap; /* บังคับไม่ให้ข้อความยาวๆ ดีดลงบรรทัดใหม่ในจอคอมค๊าา */
+            white-space: nowrap;
             transition: all 0.3s ease;
             user-select: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
@@ -100,7 +100,7 @@
             top: 100%;
             left: 0;
             background-color: #f7f7f7;
-            min-width: 100%; /* ขนาดกว้างเท่ากับตัวปุ่มหลักเป๊ะๆ */
+            min-width: 100%;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             border-radius: 0 0 12px 12px;
             overflow: hidden;
@@ -139,7 +139,6 @@
             color: #222222;
         }
 
-        /* ปรับแต่งรองรับหน้าจอมือถือ ให้ปุ่มเรียงเดี่ยวแนวตั้งและยืดเต็มจอสวยๆ ค๊าา */
         @media (max-width: 768px) {
             .dropdown-container {
                 flex-direction: column;
@@ -151,7 +150,7 @@
                 max-width: 340px;
             }
             .main-btn {
-                white-space: normal; /* ในมือถือยอมให้ตัดคำได้เพื่อไม่ให้ปุ่มล้นหน้าจอค๊าา */
+                white-space: normal;
                 font-size: 18px;
                 padding: 14px 20px;
             }
@@ -171,16 +170,16 @@
     <!-- ➖ เส้นคั่นสไตล์มินิมอล -->
     <div class="divider"></div>
 
-    <!-- 🥞 โซนปุ่มดรอปดาวน์อัปเกรดชื่อใหม่แล้วค๊าา -->
     <div class="dropdown-container">
         
-        <!-- 📝 1. ฝั่งสอบข้อเขียน และตารางเข้าสอบปฏิบัติ (เปลี่ยนชื่อปุ่มตามบรีฟคุณพี่แล้วจร้าา) -->
+        <!-- 📝 1. ฝั่งสอบข้อเขียน และตารางเข้าสอบปฏิบัติ -->
         <div class="dropdown-wrapper">
             <div class="main-btn">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
             <div class="dropdown-content">
                 <a href="#">MAR-69</a>
                 <a href="#">MAY-69</a>
-                <a href="#">JUL-69</a>
+                <!-- 🌟 ผูกลิงก์ Google Sheets จริงของเดือน JUL-69 เรียบร้อยแล้วค๊าาคุณพี่ -->
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml" target="_blank">JUL-69</a>
                 <a href="#">SEP-69</a>
             </div>
         </div>
