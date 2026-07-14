@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After You - Assessment Categories</title>
+    <!-- 🐏 ใส่ไอคอนแกะน้อยบนแท็บเหมือนเดิมค๊าา -->
     <link rel="icon" type="image/png" href="logo.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,17 +37,17 @@
             height: auto;
         }
 
-        /* 🥞 จัดวางรูปสี่เหลี่ยมจัตุรัสด้วย Grid */
+        /* 🥞 แผงจัดวางรูปสี่เหลี่ยมจัตุรัส 2 คอลัมน์เท่ากันทุกแถวตามรูป ref ค๊าา */
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* แถวละ 2 รูป */
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             max-width: 900px;
             width: 100%;
             margin-bottom: 30px;
         }
 
-        /* 🔳 สไตล์รูปสี่เหลี่ยมจัตุรัส (Square Tiles) */
+        /* 🔳 สไตล์รูปสี่เหลี่ยมจัตุรัสขอบมน (Square Tiles) */
         .thumb-card {
             aspect-ratio: 1 / 1;
             border-radius: 12px;
@@ -61,13 +62,6 @@
         .thumb-card:hover {
             transform: scale(1.03);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        /* สไตล์พิเศษสำหรับรูปล่างสุดตัวที่ 5 ให้วางอยู่ตรงกลาง */
-        .full-width-center {
-            grid-column: span 2;
-            justify-self: center;
-            width: calc(50% - 15px); /* ขนาดเท่ากับรูปอื่นๆ เป๊ะๆ ค๊าา */
         }
 
         .thumb-img {
@@ -98,15 +92,11 @@
             line-height: 1.2;
         }
 
-        /* รองรับหน้าจอมือถือให้เรียงเดี่ยวสวยๆ ค๊าา */
+        /* รองรับหน้าจอมือถือให้เรียงเดี่ยวสวยๆ ลื่นๆ ค๊าา */
         @media (max-width: 600px) {
             .portal-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
-            }
-            .full-width-center {
-                grid-column: span 1;
-                width: 100%;
             }
             .thumb-overlay-text {
                 font-size: 28px;
@@ -122,29 +112,40 @@
 
     <div class="portal-grid">
         
-        <a href="https://forms.gle/dKbdNWZxhUxDHt2p6" target="_blank" class="thumb-card">
-            <img src="Beverage.jpg" alt="สอบ Beverage" class="thumb-img">
-            <div class="thumb-overlay-text">สอบ<br>Beverage</div>
+        <!-- 🌟 1. ส่งสอบ Beverage (อัปเดตข้อความใหม่แล้วค๊าา) -->
+        <a href="https://forms.gle/dKbdNWZxhUxDHt2p6" class="thumb-card">
+            <img src="Beverage.jpg" alt="ส่งสอบ Beverage" class="thumb-img">
+            <div class="thumb-overlay-text">ส่งสอบ<br>Beverage</div>
         </a>
 
-        <a href="https://forms.gle/sX2U8G4Mf3xqzxsg8" target="_blank" class="thumb-card">
-            <img src="Dessert.jpg" alt="สอบ Dessert" class="thumb-img">
-            <div class="thumb-overlay-text">สอบ<br>Dessert</div>
+        <!-- 🌟 2. ส่งสอบ Dessert (อัปเดตข้อความใหม่แล้วค๊าา) -->
+        <a href="https://forms.gle/sX2U8G4Mf3xqzxsg8" class="thumb-card">
+            <img src="Dessert.jpg" alt="ส่งสอบ Dessert" class="thumb-img">
+            <div class="thumb-overlay-text">ส่งสอบ<br>Dessert</div>
         </a>
 
-        <a href="https://forms.gle/g5zVrMzSWgCNaxPeA" target="_blank" class="thumb-card">
-            <img src="Kakigori.jpg" alt="สอบ Kakigori" class="thumb-img">
-            <div class="thumb-overlay-text">สอบ<br>Kakigori</div>
+        <!-- 🌟 3. ส่งสอบ Kakigori (อัปเดตข้อความใหม่แล้วค๊าา) -->
+        <a href="https://forms.gle/g5zVrMzSWgCNaxPeA" class="thumb-card">
+            <img src="Kakigori.jpg" alt="ส่งสอบ Kakigori" class="thumb-img">
+            <div class="thumb-overlay-text">ส่งสอบ<br>Kakigori</div>
         </a>
 
-        <a href="https://forms.gle/j8VrTeTPMmRrtdgs6" target="_blank" class="thumb-card">
-            <img src="MOU2.jpg" alt="สอบ MOU" class="thumb-img">
-            <div class="thumb-overlay-text">สอบ<br>MOU</div>
+        <!-- 🌟 4. ส่งสอบ MOU (อัปเดตข้อความใหม่แล้วค๊าา) -->
+        <a href="https://forms.gle/j8VrTeTPMmRrtdgs6" class="thumb-card">
+            <img src="MOU2.jpg" alt="ส่งสอบ MOU" class="thumb-img">
+            <div class="thumb-overlay-text">ส่งสอบ<br>MOU</div>
         </a>
 
-        <a href="https://forms.gle/XZXUHvjTWqfCx4T88" target="_blank" class="thumb-card full-width-center">
-            <img src="Cashier.jpg" alt="สอบ Cashier" class="thumb-img">
-            <div class="thumb-overlay-text">สอบ<br>Cashier</div>
+        <!-- 🌟 5. ส่งสอบ Cashier (อัปเดตข้อความใหม่แล้วค๊าา) -->
+        <a href="https://forms.gle/XZXUHvjTWqfCx4T88" class="thumb-card">
+            <img src="Cashier.jpg" alt="ส่งสอบ Cashier" class="thumb-img">
+            <div class="thumb-overlay-text">ส่งสอบ<br>Cashier</div>
+        </a>
+
+        <!-- 🌟 6. ปุ่มผลสอบ (คงข้อความเดิมตามสั่งเป๊ะๆ เลยค๊าา) -->
+        <a href="exam-results.html" class="thumb-card">
+            <img src="results.jpg" alt="ผลสอบ" class="thumb-img">
+            <div class="thumb-overlay-text">ผลสอบ</div>
         </a>
 
     </div>
