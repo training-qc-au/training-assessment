@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After You - Exam Results</title>
-    <!-- 🐏 ปรับไอคอนบนแท็บให้ดึง Logo.jpg ตรงเป๊ะค๊าา -->
+    <!-- 🐏 ไอคอนบนแท็บดึง Logo.jpg ค๊าา -->
     <link rel="icon" type="image/jpeg" href="Logo.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,7 @@
             text-align: center;
         }
 
-        /* ➖ เส้นคั่นแนวนอนยาวคลีนๆ ตามม็อคอัพ */
+        /* ➖ เส้นคั่นแนวนอนยาวคลีนๆ */
         .divider {
             width: 100%;
             max-width: 900px;
@@ -57,11 +57,12 @@
             margin-bottom: 60px;
         }
 
-        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ซ้าย-ขวา */
+        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ซ้าย-ขวา ปรับ gap ลดลงเล็กน้อยเพื่อรองรับปุ่มที่ยาวขึ้นค๊าา */
         .dropdown-container {
             display: flex;
-            gap: 120px;
+            gap: 40px;
             justify-content: center;
+            align-items: flex-start;
             width: 100%;
             max-width: 900px;
         }
@@ -72,7 +73,7 @@
             display: inline-block;
         }
 
-        /* 🔘 ปุ่มกดหลัก (สอบข้อเขียน / สอบปฏิบัติ) */
+        /* 🔘 ปุ่มกดหลัก ปรับเอา min-width ออกเพื่อให้ยืดหดตามความยาวตัวอักษรได้กริ๊บๆ ค๊าา */
         .main-btn {
             background-color: #dbdbdb;
             color: #4a4a4a;
@@ -82,7 +83,7 @@
             border-radius: 12px;
             cursor: pointer;
             text-align: center;
-            min-width: 180px;
+            white-space: nowrap; /* บังคับไม่ให้ข้อความยาวๆ ดีดลงบรรทัดใหม่ในจอคอมค๊าา */
             transition: all 0.3s ease;
             user-select: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
@@ -99,7 +100,7 @@
             top: 100%;
             left: 0;
             background-color: #f7f7f7;
-            min-width: 100%;
+            min-width: 100%; /* ขนาดกว้างเท่ากับตัวปุ่มหลักเป๊ะๆ */
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             border-radius: 0 0 12px 12px;
             overflow: hidden;
@@ -138,37 +139,44 @@
             color: #222222;
         }
 
-        @media (max-width: 600px) {
+        /* ปรับแต่งรองรับหน้าจอมือถือ ให้ปุ่มเรียงเดี่ยวแนวตั้งและยืดเต็มจอสวยๆ ค๊าา */
+        @media (max-width: 768px) {
             .dropdown-container {
                 flex-direction: column;
                 align-items: center;
-                gap: 50px;
+                gap: 40px;
+            }
+            .dropdown-wrapper {
+                width: 100%;
+                max-width: 340px;
             }
             .main-btn {
-                min-width: 220px;
+                white-space: normal; /* ในมือถือยอมให้ตัดคำได้เพื่อไม่ให้ปุ่มล้นหน้าจอค๊าา */
+                font-size: 18px;
+                padding: 14px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🐏 โลโก้ด้านบน แก้ไขเป็น Logo.jpg ตัวเต็มตามคลังเรียบร้อยค๊าา -->
+    <!-- 🐏 โลโก้ด้านบนสุด -->
     <div class="logo-container">
         <a href="index.html"><img src="Logo.jpg" alt="After You" class="logo-img"></a>
     </div>
 
-    <!-- 📋 หัวข้อตรงตามม็อคอัพ -->
+    <!-- 📋 หัวข้อหลัก -->
     <h1 class="page-title">ผลการสอบ</h1>
     
     <!-- ➖ เส้นคั่นสไตล์มินิมอล -->
     <div class="divider"></div>
 
-    <!-- 🥞 โซนปุ่มดรอปดาวน์ค๊าา -->
+    <!-- 🥞 โซนปุ่มดรอปดาวน์อัปเกรดชื่อใหม่แล้วค๊าา -->
     <div class="dropdown-container">
         
-        <!-- 📝 1. ฝั่งสอบข้อเขียน -->
+        <!-- 📝 1. ฝั่งสอบข้อเขียน และตารางเข้าสอบปฏิบัติ (เปลี่ยนชื่อปุ่มตามบรีฟคุณพี่แล้วจร้าา) -->
         <div class="dropdown-wrapper">
-            <div class="main-btn">สอบข้อเขียน</div>
+            <div class="main-btn">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
             <div class="dropdown-content">
                 <a href="#">MAR-69</a>
                 <a href="#">MAY-69</a>
