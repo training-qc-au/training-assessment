@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After You - Exam Results</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Anuphan:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            font-family: 'Anuphan', 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* 🐏 โลโก้แบรนด์ด้านบนสุด */
+        .logo-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: auto;
+        }
+
+        /* 📋 หัวข้อผลการสอบ */
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a4a4a;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* ➖ เส้นคั่นแนวนอนยาวคลีนๆ ตามม็อคอัพ */
+        .divider {
+            width: 100%;
+            max-width: 900px;
+            height: 1.5px;
+            background-color: #707070;
+            margin-bottom: 60px;
+        }
+
+        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ซ้าย-ขวา */
+        .dropdown-container {
+            display: flex;
+            gap: 120px; /* ระยะห่างระหว่างก้อนข้อเขียนและปฏิบัติ */
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* 🔳 ก้อนเมนูดรอปดาวน์ */
+        .dropdown-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* 🔘 ปุ่มกดหลัก (สอบข้อเขียน / สอบปฏิบัติ) */
+        .main-btn {
+            background-color: #dbdbdb; /* สีเทาอ่อนสุดละมุนตามม็อคอัพคุณพี่ */
+            color: #4a4a4a;
+            padding: 14px 28px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            min-width: 180px;
+            transition: all 0.3s ease;
+            user-select: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        /* เอฟเฟกต์ตอนเมาส์ชี้ปุ่มหลัก ให้เข้มขึ้นนิดนึงดูโปรค๊าา */
+        .dropdown-wrapper:hover .main-btn {
+            background-color: #cdcdcd;
+        }
+
+        /* 📜 กล่องรายการเดือนที่จะดรอปดาวน์ลงมา (ซ่อนไว้ก่อน) */
+        .dropdown-content {
+            display: none; /* ซ่อนไว้รอการ hover ค๊าา */
+            position: absolute;
+            top: 100%; /* ลอยต่อท้ายปุ่มลงมาเป๊ะๆ */
+            left: 0;
+            background-color: #f7f7f7; /* สีเทาจางๆ ตามพื้นหลังรายการของคุณพี่ */
+            min-width: 100%; /* ขนาดกว้างเท่าปุ่มเป๊ะ */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 0 0 12px 12px; /* มนเฉพาะขอบล่างให้ดูโมเดิร์น */
+            overflow: hidden;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* ⚡️ สั่งให้ดรอปดาวน์แสดงตัวออกออกมาตอนเอาเมาส์มาชี้ (Hover) */
+        .dropdown-wrapper:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 📍 สไตล์ของแต่ละเดือนข้างในดรอปดาวน์ */
+        .dropdown-content a {
+            color: #555555;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-align: center;
+            border-bottom: 1px solid #eeeeee;
+            transition: background-color 0.2s;
+        }
+
+        /* เอาเส้นคั่นของตัวสุดท้ายออกค๊าา */
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        /* ไฮไลท์สีเวลาเมาส์ชี้เลือกเดือน */
+        .dropdown-content a:hover {
+            background-color: #e8e8e8;
+            color: #222222;
+        }
+
+        /* จัดหน้าจอมือถือให้สลับมาเรียงแนวตั้งสวยๆ ค๊าา */
+        @media (max-width: 600px) {
+            .dropdown-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            .main-btn {
+                min-width: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🐏 โลโก้ด้านบน -->
+    <div class="logo-container">
+        <a href="index.html"><img src="logo.png" alt="After You" class="logo-img"></a>
+    </div>
+
+    <!-- 📋 หัวข้อตรงตามม็อคอัพ -->
+    <h1 class="page-title">ผลการสอบ</h1>
+    
+    <!-- ➖ เส้นคั่นสไตล์มินิมอล -->
+    <div class="divider"></div>
+
+    <!-- 🥞 โซนปุ่มดรอปดาวน์ค๊าา -->
+    <div class="dropdown-container">
+        
+        <!-- 📝 1. ฝั่งสอบข้อเขียน -->
+        <div class="dropdown-wrapper">
+            <div class="main-btn">สอบข้อเขียน</div>
+            <div class="dropdown-content">
+                <!-- คุณพี่สามารถเอาลิงก์ Google Sheets หรือรูปภาพผลสอบมาใส่แทนเครื่องหมาย # ได้เลยน้าา -->
+                <a href="#">MAR-69</a>
+                <a href="#">MAY-69</a>
+                <a href="#">JUL-69</a>
+                <a href="#">SEP-69</a>
+            </div>
+        </div>
+
+        <!-- 🏋️ 2. ฝั่งสอบปฏิบัติ -->
+        <div class="dropdown-wrapper">
+            <div class="main-btn">สอบปฏิบัติ</div>
+            <div class="dropdown-content">
+                <a href="#">MAR-69</a>
+                <a href="#">MAY-69</a>
+                <a href="#">JUL-69</a>
+                <a href="#">SEP-69</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
