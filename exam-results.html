@@ -51,86 +51,72 @@
         /* ➖ เส้นคั่นแนวนอนยาวคลีนๆ */
         .divider {
             width: 100%;
-            max-width: 950px;
+            max-width: 900px;
             height: 1.5px;
             background-color: #707070;
             margin-bottom: 60px;
         }
 
-        /* 🥞 แผงจัดวาง Layout การ์ด 3 ใบ ปรับให้เท่ากันเป๊ะแบบสมดุล */
+        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์แนวนอน */
         .dropdown-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* แบ่ง 3 ช่องเท่ากันเป๊ะค๊าา */
-            gap: 30px;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
             width: 100%;
-            max-width: 950px;
+            max-width: 1100px;
         }
 
-        /* 🔳 ก้อนเมนูโครงสร้างแบบการ์ดแนวตั้ง (Card Wrapper) */
+        /* 🔳 ก้อนเมนูดรอปดาวน์ */
         .dropdown-wrapper {
             position: relative;
-            width: 100%;
+            display: inline-block;
         }
 
-        /* 🔘 ปรับดีไซน์ปุ่มหลักให้เป็นการ์ดสี่เหลี่ยมผืนผ้า สูงเท่ากัน ลุคมินิมอลพรีเมียม */
+        /* 🔘 ปุ่มกดหลัก (ปรับบล็อกความกว้างขั้นต่ำให้เท่ากันเป๊ะทุกปุ่มแล้วค๊าา) */
         .main-btn {
-            background-color: #f7f7f7;
-            border: 1px solid #e0e0e0;
+            background-color: #dbdbdb;
             color: #4a4a4a;
-            padding: 40px 20px;
+            padding: 14px 28px;
             font-size: 18px;
             font-weight: 700;
-            border-radius: 16px;
+            border-radius: 12px;
             cursor: pointer;
             text-align: center;
-            min-height: 160px; /* บังคับให้ความสูงเท่ากันทุกกล่องค๊าา */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+            transition: all 0.3s ease;
             user-select: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            position: relative;
+            
+            /* ✨ หัวใจสำคัญ: ล็อกขนาดปุ่มให้เท่ากันทุกปุ่ม ไม่มียืดหดแปลกๆ แล้วค๊าา */
+            min-width: 300px; 
         }
 
-        /* ใส่สัญลักษณ์สามเหลี่ยมเล็กๆ สำหรับอันที่มี dropdown */
-        .has-arrow::after {
+        /* เพิ่มลูกศรสามเหลี่ยมห้อยท้ายคลีนๆ เท่ากันทุกปุ่ม */
+        .main-btn::after {
             content: ' ▼';
             font-size: 11px;
-            color: #999999;
-            margin-top: 5px;
+            color: #777777;
+            vertical-align: middle;
+            margin-left: 5px;
         }
 
-        .dropdown-wrapper:hover .main-btn {
-            background-color: #eeeeee;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        .main-btn:hover {
+            background-color: #cdcdcd;
         }
 
-        /* 🏷️ แถบป้ายบอกข้อมูลเดือนล่าสุด (UX สิ่งนี้ดีย์ต่อใจ User มากค่ะ) */
-        .latest-badge {
-            font-size: 12px;
-            font-weight: 600;
-            color: #bfa15f; /* สีทองหม่นคาเฟ่ */
-            background-color: #fdfaf2;
-            padding: 4px 12px;
-            border-radius: 20px;
-            border: 1px solid #f0e6cc;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        /* 📜 กล่องรายการเดือนเมื่อกดขยาย */
+        /* 📜 กล่องรายการเดือนเมื่อกดกางลงมา */
         .dropdown-content {
             display: none;
             position: absolute;
-            top: 105%;
+            top: 100%;
             left: 0;
-            background-color: #ffffff;
-            min-width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
-            border: 1px solid #eeeeee;
+            background-color: #f7f7f7;
+            min-width: 100%; /* กว้างเท่ากับขนาดตัวปุ่มเป๊ะค๊าา */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 0 0 12px 12px;
             overflow: hidden;
             z-index: 100;
             opacity: 0;
@@ -138,23 +124,24 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
+        /* คลาสทำงานกางเปิดดรอปดาวน์ */
         .dropdown-wrapper.active .dropdown-content {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* 📍 รายการในดร็อปดาวน์ */
+        /* 📍 รายการในดรอปดาวน์ */
         .dropdown-content a {
             color: #555555;
             padding: 14px 20px;
             text-decoration: none;
             display: block;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             font-family: 'Plus Jakarta Sans', sans-serif;
             text-align: center;
-            border-bottom: 1px solid #f5f5f5;
+            border-bottom: 1px solid #eeeeee;
             transition: background-color 0.2s;
         }
 
@@ -163,84 +150,26 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #f7f7f7;
-            color: #bfa15f;
+            background-color: #e8e8e8;
+            color: #222222;
         }
 
-        /* 🚨 หน้าต่าง Pop-up ดักสรุปกุ๊ก */
-        .notice-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .notice-modal.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .notice-box {
-            background-color: #ffffff;
-            padding: 40px 30px;
-            border-radius: 16px;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            position: relative;
-            text-align: center;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-
-        .notice-modal.active .notice-box {
-            transform: scale(1);
-        }
-
-        .notice-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #4a4a4a;
-            line-height: 1.6;
-            margin-top: 10px;
-        }
-
-        .modal-close-x {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #999999;
-            font-size: 28px;
-            font-weight: 300;
-            cursor: pointer;
-            transition: color 0.2s;
-            font-family: Arial, sans-serif;
-            user-select: none;
-        }
-
-        .modal-close-x:hover {
-            color: #333333;
-        }
-
-        /* ปรับแต่งการ์ดเมื่อแสดงผลบนหน้าจอมือถือ */
-        @media (max-width: 868px) {
+        /* จัดระเบียบบนหน้าจอมือถือ */
+        @media (max-width: 980px) {
             .dropdown-container {
-                grid-template-columns: 1fr; /* เรียงเป็นแถวเดี่ยวแนวตั้งค๊าา */
-                gap: 20px;
-                padding: 0 10px;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            .dropdown-wrapper {
+                width: 100%;
+                max-width: 340px;
             }
             .main-btn {
-                min-height: 130px;
-                padding: 30px 20px;
+                white-space: normal;
+                font-size: 18px;
+                padding: 14px 20px;
+                min-width: 100%;
             }
         }
     </style>
@@ -260,12 +189,9 @@
 
     <div class="dropdown-container">
         
-        <!-- 📝 1. กล่องข้อเขียนและตารางสอบปฏิบัติ -->
+        <!-- 📝 1. ฝั่งสอบข้อเขียน และตารางเข้าสอบปฏิบัติ -->
         <div class="dropdown-wrapper">
-            <div class="main-btn has-arrow" onclick="toggleDropdown(this)">
-                <span>สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</span>
-                <span class="latest-badge">Latest: JUL-69</span>
-            </div>
+            <div class="main-btn" onclick="toggleDropdown(this)">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
             <div class="dropdown-content">
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=0&single=true" target="_blank">MAY-69</a>
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml?gid=2115498702&single=true" target="_blank">JUL-69</a>
@@ -273,12 +199,9 @@
             </div>
         </div>
 
-        <!-- 🏋️ 2. กล่องสอบปฏิบัติ -->
+        <!-- 🏋️ 2. ฝั่งสอบปฏิบัติ -->
         <div class="dropdown-wrapper">
-            <div class="main-btn has-arrow" onclick="toggleDropdown(this)">
-                <span>สอบปฏิบัติ</span>
-                <span class="latest-badge">Latest: JUL-69</span>
-            </div>
+            <div class="main-btn" onclick="toggleDropdown(this)">สอบปฏิบัติ</div>
             <div class="dropdown-content">
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=2114985660&single=true" target="_blank">MAY-69 (สอบMAY-JUN-69)</a>
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml?gid=947172196&single=true" target="_blank">JUL-69 (สอบJUL-AUG-69)</a>
@@ -286,64 +209,38 @@
             </div>
         </div>
 
-        <!-- 🍳 3. กล่องสรุปกุ๊ก (ขนาดเท่าเพื่อนเป๊ะๆ คลีนสุดๆ) -->
+        <!-- 🍳 3. ฝั่งสรุปกุ๊ก (ปรับให้มีดร็อปดาวน์ 3 เดือน พร้อมฝังลิงก์ชีตของเดือน MAY-69 เรียบร้อยค๊าา!) -->
         <div class="dropdown-wrapper">
-            <div class="main-btn" onclick="openNoticeModal()">
-                <span>สรุปกุ๊ก</span>
-                <span class="latest-badge" style="color:#777; background:#eee; border-color:#ddd;">Database ↗</span>
+            <div class="main-btn" onclick="toggleDropdown(this)">สรุปกุ๊ก</div>
+            <div class="dropdown-content">
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=551966332&single=true" target="_blank">MAY-69</a>
+                <a href="#">JUL-69</a>
+                <a href="#">SEP-69</a>
             </div>
         </div>
 
     </div>
 
-    <!-- 🌟 โครงสร้างหน้าต่างแจ้งเตือนสรุปกุ๊ก -->
-    <div id="noticeModal" class="notice-modal">
-        <div class="notice-box">
-            <span class="modal-close-x" onclick="closeNoticeAndRedirect()">&times;</span>
-            <div class="notice-text">
-                📍 โปรดกรอกข้อมูลพนักงานเพื่อตรวจสอบสรุปกุ๊กนะคะ
-            </div>
-        </div>
-    </div>
-
-    <!-- ⚡️ โค้ด JavaScript ระบบสัมผัสและคลิกข้ามลิงก์ -->
+    <!-- ⚡️ โค้ด JavaScript ล็อกระบบสัมผัส คลิกเปิด-ปิด เสถียร 100% -->
     <script>
         function toggleDropdown(button) {
             const currentWrapper = button.parentElement;
+            
             document.querySelectorAll('.dropdown-wrapper').forEach(wrapper => {
                 if (wrapper !== currentWrapper) {
                     wrapper.classList.remove('active');
                 }
             });
+            
             currentWrapper.classList.toggle('active');
         }
 
         window.onclick = function(event) {
-            // ปรับเงื่อนไขให้คลิกปุ่มหรือป้ายด้านในแล้วไม่หลุดบั๊กค๊าา
-            if (!event.target.closest('.main-btn')) {
+            if (!event.target.matches('.main-btn')) {
                 document.querySelectorAll('.dropdown-wrapper').forEach(wrapper => {
-                    if(!wrapper.closest('.notice-box')) {
-                        wrapper.classList.remove('active');
-                    }
+                    wrapper.classList.remove('active');
                 });
             }
-        }
-
-        function openNoticeModal() {
-            const modal = document.getElementById('noticeModal');
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('active');
-            }, 10);
-        }
-
-        function closeNoticeAndRedirect() {
-            const modal = document.getElementById('noticeModal');
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                window.open('https://training-qc-au.github.io/database/index.html', '_blank');
-            }, 300);
         }
     </script>
 
