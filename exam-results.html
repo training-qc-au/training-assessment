@@ -57,14 +57,15 @@
             margin-bottom: 60px;
         }
 
-        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ซ้าย-ขวา */
+        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ ปรับขยายกว้าง 3 ปุ่มเรียงหน้ากระดานสวยๆ ค๊าา */
         .dropdown-container {
             display: flex;
-            gap: 40px;
+            gap: 24px;
             justify-content: center;
             align-items: flex-start;
+            flex-wrap: wrap; /* รองรับกรณีหน้าจอแท็บเล็ตเล็กให้สไลด์ตกแถวไม่ล้นค๊าา */
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
         /* 🔳 ก้อนเมนูดรอปดาวน์ */
@@ -77,8 +78,8 @@
         .main-btn {
             background-color: #dbdbdb;
             color: #4a4a4a;
-            padding: 14px 28px;
-            font-size: 20px;
+            padding: 14px 24px;
+            font-size: 18px;
             font-weight: 700;
             border-radius: 12px;
             cursor: pointer;
@@ -90,10 +91,10 @@
             position: relative;
         }
 
-        /* เพิ่มลูกเล่นลูกศรเล็กๆ ให้รู้ว่ากดลงมาได้ค๊าา */
+        /* ลูกศรเล็กๆ ท้ายปุ่มบอกให้รู้ว่ากดกางได้ค๊าา */
         .main-btn::after {
             content: ' ▼';
-            font-size: 12px;
+            font-size: 11px;
             color: #777777;
             vertical-align: middle;
             margin-left: 5px;
@@ -103,7 +104,7 @@
             background-color: #cdcdcd;
         }
 
-        /* 📜 กล่องรายการเดือน (เปลี่ยนมาควบคุมการเปิดปิดด้วยคลาส active แทนการ hover ค๊าา) */
+        /* 📜 กล่องรายการเดือน */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -120,14 +121,14 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
-        /* เมื่อมีการใส่คลาส active ระบบจะกางเมนูออกมาทันทีอย่างเสถียรค๊าา */
+        /* คลาสเปิดปิดการทำงานที่เสถียรทุกเบราว์เซอร์ */
         .dropdown-wrapper.active .dropdown-content {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* 📍 สไตล์ของแต่ละเดือนข้างในดรอปดาวน์ */
+        /* 📍 สไตล์รายการด้านในดรอปดาวน์ */
         .dropdown-content a {
             color: #555555;
             padding: 14px 20px;
@@ -150,11 +151,12 @@
             color: #222222;
         }
 
-        @media (max-width: 768px) {
+        /* จัดแต่งการแสดงผลพรีเมียมนุ่มนวลบนหน้าจอมือถือ */
+        @media (max-width: 868px) {
             .dropdown-container {
                 flex-direction: column;
                 align-items: center;
-                gap: 40px;
+                gap: 30px;
             }
             .dropdown-wrapper {
                 width: 100%;
@@ -187,7 +189,8 @@
         <div class="dropdown-wrapper">
             <div class="main-btn" onclick="toggleDropdown(this)">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
             <div class="dropdown-content">
-                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=0&single=true" target=_blank">MAY-69</a>
+                <!-- น้องซ่อมโค้ดแชร์ Google Sheets แยกแท็บตัวพิมพ์เครื่องหมายคำพูดให้คลีนแล้วค๊าา -->
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=0&single=true" target="_blank">MAY-69</a>
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml?gid=2115498702&single=true" target="_blank">JUL-69</a>
                 <a href="#">SEP-69</a>
             </div>
@@ -197,21 +200,31 @@
         <div class="dropdown-wrapper">
             <div class="main-btn" onclick="toggleDropdown(this)">สอบปฏิบัติ</div>
             <div class="dropdown-content">
-                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=2114985660&single=true" target=_blank">MAY-69 (สอบMAY-JUN-69)</a>
-                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml?gid=947172196&single=true" target=_blank">JUL-69 (สอบJUL-AUG-69)</a>
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=2114985660&single=true" target="_blank">MAY-69 (สอบMAY-JUN-69)</a>
+                <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml?gid=947172196&single=true" target="_blank">JUL-69 (สอบJUL-AUG-69)</a>
                 <a href="#">SEP-69 (สอบSEP-OCT-69)</a>
+            </div>
+        </div>
+
+        <!-- 🍳 3. ปุ่มฝั่งกุ๊กที่คุณพี่สั่งเพิ่มเคียงข้างกันอย่างสมดุลค๊าา -->
+        <div class="dropdown-wrapper">
+            <div class="main-btn" onclick="toggleDropdown(this)">สรุปกุ๊ก</div>
+            <div class="dropdown-content">
+                <a href="#">MAR-69</a>
+                <a href="#">MAY-69</a>
+                <a href="#">JUL-69</a>
+                <a href="#">SEP-69</a>
             </div>
         </div>
 
     </div>
 
-    <!-- ⚡️ โค้ด JavaScript ล็อกระบบสัมผัส คลิกเปิด-ปิดชัวร์ 100% -->
+    <!-- ⚡️ โค้ด JavaScript ล็อกระบบสัมผัส คลิกเปิด-ปิด เสถียร 100% ทุกเครื่อง -->
     <script>
         function toggleDropdown(button) {
-            // ดึงก้อน wrapper ของปุ่มที่ถูกกด
             const currentWrapper = button.parentElement;
             
-            // ปิดดรอปดาวน์อันอื่นก่อนเพื่อความคลีนค๊าา
+            // ปิดดรอปดาวน์อันอื่นก่อนเพื่อไม่ให้กางทับกันค๊าา
             document.querySelectorAll('.dropdown-wrapper').forEach(wrapper => {
                 if (wrapper !== currentWrapper) {
                     wrapper.classList.remove('active');
