@@ -57,13 +57,13 @@
             margin-bottom: 60px;
         }
 
-        /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ ปรับขยายกว้าง 3 ปุ่มเรียงหน้ากระดานสวยๆ ค๊าา */
+        /* 🥞 แผงจัดวางปุ่ม ปรับกระจายเป็น 3 ปุ่มคู่ขนานสวยๆ ค๊าา */
         .dropdown-container {
             display: flex;
             gap: 24px;
             justify-content: center;
             align-items: flex-start;
-            flex-wrap: wrap; /* รองรับกรณีหน้าจอแท็บเล็ตเล็กให้สไลด์ตกแถวไม่ล้นค๊าา */
+            flex-wrap: wrap;
             width: 100%;
             max-width: 1000px;
         }
@@ -91,8 +91,8 @@
             position: relative;
         }
 
-        /* ลูกศรเล็กๆ ท้ายปุ่มบอกให้รู้ว่ากดกางได้ค๊าา */
-        .main-btn::after {
+        /* ใส่สัญลักษณ์สามเหลี่ยมกางออก เฉพาะปุ่ม 1 และ 2 ที่มี dropdown ค๊าา */
+        .has-arrow::after {
             content: ' ▼';
             font-size: 11px;
             color: #777777;
@@ -104,7 +104,7 @@
             background-color: #cdcdcd;
         }
 
-        /* 📜 กล่องรายการเดือน */
+        /* 📜 กล่องรายการเดือนของดรอปดาวน์ */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -121,14 +121,12 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
-        /* คลาสเปิดปิดการทำงานที่เสถียรทุกเบราว์เซอร์ */
         .dropdown-wrapper.active .dropdown-content {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* 📍 สไตล์รายการด้านในดรอปดาวน์ */
         .dropdown-content a {
             color: #555555;
             padding: 14px 20px;
@@ -151,7 +149,73 @@
             color: #222222;
         }
 
-        /* จัดแต่งการแสดงผลพรีเมียมนุ่มนวลบนหน้าจอมือถือ */
+        /* 🚨 3. โครงสร้างหน้าต่าง Pop-up ดักสรุปกุ๊ก (Modal Overlay) */
+        .notice-modal {
+            display: none; /* ซ่อนไว้ก่อน จะทำงานเมื่อคลิกสรุปกุ๊ก */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* พื้นหลังดำโปร่งแสงนุ่มๆ */
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .notice-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* กล่องแจ้งเตือนสีขาวขอบมนสุดมินิมอลตามภาพสไตล์คุณพี่ */
+        .notice-box {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            text-align: center;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .notice-modal.active .notice-box {
+            transform: scale(1);
+        }
+
+        /* ตัวหนังสือข้อความเตือนด้านใน */
+        .notice-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        /* ปุ่ม X ปิดที่มุมขวาบนของกล่องข้อความ */
+        .modal-close-x {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #999999;
+            font-size: 28px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s;
+            font-family: Arial, sans-serif;
+            user-select: none;
+        }
+
+        .modal-close-x:hover {
+            color: #333333;
+        }
+
         @media (max-width: 868px) {
             .dropdown-container {
                 flex-direction: column;
@@ -166,6 +230,7 @@
                 white-space: normal;
                 font-size: 18px;
                 padding: 14px 20px;
+                width: 100%;
             }
         }
     </style>
@@ -187,9 +252,8 @@
         
         <!-- 📝 1. ฝั่งสอบข้อเขียน และตารางเข้าสอบปฏิบัติ -->
         <div class="dropdown-wrapper">
-            <div class="main-btn" onclick="toggleDropdown(this)">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
+            <div class="main-btn has-arrow" onclick="toggleDropdown(this)">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
             <div class="dropdown-content">
-                <!-- น้องซ่อมโค้ดแชร์ Google Sheets แยกแท็บตัวพิมพ์เครื่องหมายคำพูดให้คลีนแล้วค๊าา -->
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=0&single=true" target="_blank">MAY-69</a>
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml?gid=2115498702&single=true" target="_blank">JUL-69</a>
                 <a href="#">SEP-69</a>
@@ -198,7 +262,7 @@
 
         <!-- 🏋️ 2. ฝั่งสอบปฏิบัติ -->
         <div class="dropdown-wrapper">
-            <div class="main-btn" onclick="toggleDropdown(this)">สอบปฏิบัติ</div>
+            <div class="main-btn has-arrow" onclick="toggleDropdown(this)">สอบปฏิบัติ</div>
             <div class="dropdown-content">
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQwAsb1enWglgninH1HCYqRFUimkngCGh27dKMNBOQBUGnvmdv6XWgtFBJxKEQlLjct-aIh4l4ZbbtL/pubhtml?gid=2114985660&single=true" target="_blank">MAY-69 (สอบMAY-JUN-69)</a>
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml?gid=947172196&single=true" target="_blank">JUL-69 (สอบJUL-AUG-69)</a>
@@ -206,42 +270,65 @@
             </div>
         </div>
 
-        <!-- 🍳 3. ปุ่มฝั่งกุ๊กที่คุณพี่สั่งเพิ่มเคียงข้างกันอย่างสมดุลค๊าา -->
+        <!-- 🍳 3. ปุ่มสรุปกุ๊กเดี่ยวๆ แบบไม่มีดรอปดาวน์ (คลิกปุ๊บเรียก Pop-up เตือนก่อนข้ามเว็บค๊าา) -->
         <div class="dropdown-wrapper">
-            <div class="main-btn" onclick="toggleDropdown(this)">สรุปกุ๊ก</div>
-            <div class="dropdown-content">
-                <a href="#">MAR-69</a>
-                <a href="#">MAY-69</a>
-                <a href="#">JUL-69</a>
-                <a href="#">SEP-69</a>
-            </div>
+            <div class="main-btn" onclick="openNoticeModal()">สรุปกุ๊ก</div>
         </div>
 
     </div>
 
-    <!-- ⚡️ โค้ด JavaScript ล็อกระบบสัมผัส คลิกเปิด-ปิด เสถียร 100% ทุกเครื่อง -->
+    <!-- 🌟 โครงสร้างหน้าต่างแจ้งเตือนเตือนสรุปกุ๊กที่แอบซ่อนอยู่ -->
+    <div id="noticeModal" class="notice-modal">
+        <div class="notice-box">
+            <!-- ปุ่ม X ดักฟังคำสั่งปิดเพื่อกระโดดข้ามหน้าเว็บค๊าา -->
+            <span class="modal-close-x" onclick="closeNoticeAndRedirect()">&times;</span>
+            <div class="notice-text">
+                📍 โปรดกรอกข้อมูลพนักงานเพื่อตรวจสอบสรุปกุ๊กนะคะ
+            </div>
+        </div>
+    </div>
+
+    <!-- ⚡️ โค้ดควบคุมระบบป๊อปอัพและลิงก์เว็บไซต์ข้ามหน้าแบบสมบูรณ์ -->
     <script>
         function toggleDropdown(button) {
             const currentWrapper = button.parentElement;
-            
-            // ปิดดรอปดาวน์อันอื่นก่อนเพื่อไม่ให้กางทับกันค๊าา
             document.querySelectorAll('.dropdown-wrapper').forEach(wrapper => {
                 if (wrapper !== currentWrapper) {
                     wrapper.classList.remove('active');
                 }
             });
-            
-            // สลับสถานะเปิด-ปิดของอันที่กด
             currentWrapper.classList.toggle('active');
         }
 
-        // ถ้านิ้วไปจิ้มพื้นที่ว่างอื่นๆ ด้านนอก ให้หดเมนูกลับไปค๊าา
         window.onclick = function(event) {
             if (!event.target.matches('.main-btn')) {
                 document.querySelectorAll('.dropdown-wrapper').forEach(wrapper => {
-                    wrapper.classList.remove('active');
+                    // ล็อกไม่ให้ระบบคลิกข้างนอกไปปิดตัวหน้าต่างป๊อปอัพแจ้งเตือนข้อตกลงกุ๊กค๊าา
+                    if(wrapper.parentElement.className !== 'notice-box') {
+                        wrapper.classList.remove('active');
+                    }
                 });
             }
+        }
+
+        // ฟังก์ชันเปิดกล่องแจ้งเตือนป๊อปอัพกุ๊กค๊าา
+        function openNoticeModal() {
+            const modal = document.getElementById('noticeModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        // ฟังก์ชันหัวใจสำคัญ: เมื่อกดปิด X ปุ๊บ สั่งให้เด้งเปิดหน้าต่างฐานข้อมูลพี่แท็บใหม่ทันทีค๊าา
+        function closeNoticeAndRedirect() {
+            const modal = document.getElementById('noticeModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                // ✈️ ทะยานข้ามไปยังเว็บฐานข้อมูลเดิมของคุณพี่ตามบรีฟในแท็บใหม่สวยๆ ค๊าา
+                window.open('https://training-qc-au.github.io/database/index.html', '_blank');
+            }, 300);
         }
     </script>
 
