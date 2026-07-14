@@ -87,13 +87,23 @@
             transition: all 0.3s ease;
             user-select: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            position: relative;
         }
 
-        .dropdown-wrapper:hover .main-btn {
+        /* เพิ่มลูกเล่นลูกศรเล็กๆ ให้รู้ว่ากดลงมาได้ค๊าา */
+        .main-btn::after {
+            content: ' ▼';
+            font-size: 12px;
+            color: #777777;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        .main-btn:hover {
             background-color: #cdcdcd;
         }
 
-        /* 📜 กล่องรายการเดือนที่จะดรอปดาวน์ลงมา */
+        /* 📜 กล่องรายการเดือน (เปลี่ยนมาควบคุมการเปิดปิดด้วยคลาส active แทนการ hover ค๊าา) */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -107,10 +117,11 @@
             z-index: 100;
             opacity: 0;
             transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
-        .dropdown-wrapper:hover .dropdown-content {
+        /* เมื่อมีการใส่คลาส active ระบบจะกางเมนูออกมาทันทีอย่างเสถียรค๊าา */
+        .dropdown-wrapper.active .dropdown-content {
             display: block;
             opacity: 1;
             transform: translateY(0);
@@ -174,11 +185,10 @@
         
         <!-- 📝 1. ฝั่งสอบข้อเขียน และตารางเข้าสอบปฏิบัติ -->
         <div class="dropdown-wrapper">
-            <div class="main-btn">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
+            <div class="main-btn" onclick="toggleDropdown(this)">สอบข้อเขียน และตารางเข้าสอบปฏิบัติ</div>
             <div class="dropdown-content">
                 <a href="#">MAR-69</a>
                 <a href="#">MAY-69</a>
-                <!-- 🌟 ผูกลิงก์ Google Sheets จริงของเดือน JUL-69 เรียบร้อยแล้วค๊าาคุณพี่ -->
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR40_VcU-EMHFCovsB0dPrtv2eFDiqVNZawv6xX41Kou9lBDAoAF2hjdododrRWAnAhJx2hsF3AOivl/pubhtml" target="_blank">JUL-69</a>
                 <a href="#">SEP-69</a>
             </div>
@@ -186,7 +196,7 @@
 
         <!-- 🏋️ 2. ฝั่งสอบปฏิบัติ -->
         <div class="dropdown-wrapper">
-            <div class="main-btn">สอบปฏิบัติ</div>
+            <div class="main-btn" onclick="toggleDropdown(this)">สอบปฏิบัติ</div>
             <div class="dropdown-content">
                 <a href="#">MAR-69</a>
                 <a href="#">MAY-69</a>
@@ -196,6 +206,33 @@
         </div>
 
     </div>
+
+    <!-- ⚡️ โค้ด JavaScript ล็อกระบบสัมผัส คลิกเปิด-ปิดชัวร์ 100% -->
+    <script>
+        function toggleDropdown(button) {
+            // ดึงก้อน wrapper ของปุ่มที่ถูกกด
+            const currentWrapper = button.parentElement;
+            
+            // ปิดดรอปดาวน์อันอื่นก่อนเพื่อความคลีนค๊าา
+            document.querySelectorAll('.dropdown-wrapper').forEach(wrapper => {
+                if (wrapper !== currentWrapper) {
+                    wrapper.classList.remove('active');
+                }
+            });
+            
+            // สลับสถานะเปิด-ปิดของอันที่กด
+            currentWrapper.classList.toggle('active');
+        }
+
+        // ถ้านิ้วไปจิ้มพื้นที่ว่างอื่นๆ ด้านนอก ให้หดเมนูกลับไปค๊าา
+        window.onclick = function(event) {
+            if (!event.target.matches('.main-btn')) {
+                document.querySelectorAll('.dropdown-wrapper').forEach(wrapper => {
+                    wrapper.classList.remove('active');
+                });
+            }
+        }
+    </script>
 
 </body>
 </html>
