@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After You - Exam Results</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <!-- 🐏 ปรับไอคอนบนแท็บให้ดึง Logo.jpg ตรงเป๊ะค๊าา -->
+    <link rel="icon" type="image/jpeg" href="Logo.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +60,7 @@
         /* 🥞 แผงจัดวางปุ่มดรอปดาวน์ซ้าย-ขวา */
         .dropdown-container {
             display: flex;
-            gap: 120px; /* ระยะห่างระหว่างก้อนข้อเขียนและปฏิบัติ */
+            gap: 120px;
             justify-content: center;
             width: 100%;
             max-width: 900px;
@@ -73,7 +74,7 @@
 
         /* 🔘 ปุ่มกดหลัก (สอบข้อเขียน / สอบปฏิบัติ) */
         .main-btn {
-            background-color: #dbdbdb; /* สีเทาอ่อนสุดละมุนตามม็อคอัพคุณพี่ */
+            background-color: #dbdbdb;
             color: #4a4a4a;
             padding: 14px 28px;
             font-size: 20px;
@@ -87,21 +88,20 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
         }
 
-        /* เอฟเฟกต์ตอนเมาส์ชี้ปุ่มหลัก ให้เข้มขึ้นนิดนึงดูโปรค๊าา */
         .dropdown-wrapper:hover .main-btn {
             background-color: #cdcdcd;
         }
 
-        /* 📜 กล่องรายการเดือนที่จะดรอปดาวน์ลงมา (ซ่อนไว้ก่อน) */
+        /* 📜 กล่องรายการเดือนที่จะดรอปดาวน์ลงมา */
         .dropdown-content {
-            display: none; /* ซ่อนไว้รอการ hover ค๊าา */
+            display: none;
             position: absolute;
-            top: 100%; /* ลอยต่อท้ายปุ่มลงมาเป๊ะๆ */
+            top: 100%;
             left: 0;
-            background-color: #f7f7f7; /* สีเทาจางๆ ตามพื้นหลังรายการของคุณพี่ */
-            min-width: 100%; /* ขนาดกว้างเท่าปุ่มเป๊ะ */
+            background-color: #f7f7f7;
+            min-width: 100%;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border-radius: 0 0 12px 12px; /* มนเฉพาะขอบล่างให้ดูโมเดิร์น */
+            border-radius: 0 0 12px 12px;
             overflow: hidden;
             z-index: 100;
             opacity: 0;
@@ -109,7 +109,6 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        /* ⚡️ สั่งให้ดรอปดาวน์แสดงตัวออกออกมาตอนเอาเมาส์มาชี้ (Hover) */
         .dropdown-wrapper:hover .dropdown-content {
             display: block;
             opacity: 1;
@@ -130,18 +129,15 @@
             transition: background-color 0.2s;
         }
 
-        /* เอาเส้นคั่นของตัวสุดท้ายออกค๊าา */
         .dropdown-content a:last-child {
             border-bottom: none;
         }
 
-        /* ไฮไลท์สีเวลาเมาส์ชี้เลือกเดือน */
         .dropdown-content a:hover {
             background-color: #e8e8e8;
             color: #222222;
         }
 
-        /* จัดหน้าจอมือถือให้สลับมาเรียงแนวตั้งสวยๆ ค๊าา */
         @media (max-width: 600px) {
             .dropdown-container {
                 flex-direction: column;
@@ -156,9 +152,9 @@
 </head>
 <body>
 
-    <!-- 🐏 โลโก้ด้านบน -->
+    <!-- 🐏 โลโก้ด้านบน แก้ไขเป็น Logo.jpg ตัวเต็มตามคลังเรียบร้อยค๊าา -->
     <div class="logo-container">
-        <a href="index.html"><img src="logo.png" alt="After You" class="logo-img"></a>
+        <a href="index.html"><img src="Logo.jpg" alt="After You" class="logo-img"></a>
     </div>
 
     <!-- 📋 หัวข้อตรงตามม็อคอัพ -->
@@ -174,7 +170,6 @@
         <div class="dropdown-wrapper">
             <div class="main-btn">สอบข้อเขียน</div>
             <div class="dropdown-content">
-                <!-- คุณพี่สามารถเอาลิงก์ Google Sheets หรือรูปภาพผลสอบมาใส่แทนเครื่องหมาย # ได้เลยน้าา -->
                 <a href="#">MAR-69</a>
                 <a href="#">MAY-69</a>
                 <a href="#">JUL-69</a>
